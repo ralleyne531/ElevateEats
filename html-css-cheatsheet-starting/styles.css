@@ -1,0 +1,25 @@
+ *,html,body{
+    background-color: blanchedalmond;
+ }
+
+ table{
+    display: flex;
+    border: 10px solid red;
+    width: fit-content;
+    height: fit-content;
+ }
+
+ td{
+    border: 1px solid blue;
+    background-color: yellow;
+    margin: 100px 100px;
+    font-size: larger;
+    
+ }
+td.symbol{
+    background-color: aquamarine;
+}
+.header{
+    background-color: brown;
+    font-weight: bold;
+ }
