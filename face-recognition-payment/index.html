@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Payment</title>
+</head>
+<body>
+    <h1>Face Recognition Payment Demo</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture">Capture</button>
+
+    <script>
+        const video = getElementById('video');
+
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+            navigator.mediaDevices.getUserMedia({video:true}).then((stream) =>{
+                video.srcObject = stream;
+                video.play();
+            });
+        }
+
+        document.getElementById('capture').addEventListener('click', () =>{
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const dataUrl = canvas.toDataURL('image/jpeg');
+            const base64Image = dataUrl.split(',')[1];
+
+            fetch('/register-face',{
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({image: base64Image})
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error))
+        })
+    </script>
+</body>
+</html>
