@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const userRouter = require('./routes/users')
+const postsRouter = require('./routes/posts')
 
-//app.use(express.static("public"))
+app.use(express.static("public"))
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
-app.use('/users', userRouter)
+app.use('/posts', postsRouter)
 
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => {

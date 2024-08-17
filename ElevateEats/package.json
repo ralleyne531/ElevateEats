@@ -4,6 +4,7 @@
   "description": "Backend API for Elevate Eats",
   "main": "app.js",
   "scripts": {
+    "dev" : "nodemon ./app.js localhost 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
