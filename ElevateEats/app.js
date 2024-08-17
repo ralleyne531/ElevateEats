@@ -2,11 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 const postsRouter = require('./routes/posts')
+const achievementsRouter = require('./routes/achievements')
 
 app.use(express.static("public"))
 app.use(express.urlencoded({extended : true}))
 app.use(express.json())
 app.use('/posts', postsRouter)
+app.use('/achievements', achievementsRouter)
 
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
