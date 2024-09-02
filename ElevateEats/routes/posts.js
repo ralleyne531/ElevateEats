@@ -26,6 +26,7 @@ router.post('/', (req,res) => {
         res.status(404).send('404 Bad Request')
     }else{
     console.log(req.body)
+    posts.push(req.body)
     res.status(202).json(req.body)
     }
 })
