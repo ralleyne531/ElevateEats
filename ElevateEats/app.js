@@ -3,6 +3,11 @@ const app = express()
 const port = 3000
 const postsRouter = require('./routes/posts')
 const achievementsRouter = require('./routes/achievements')
+const {MongoClient} = require("mongodb");
+
+const uri = "mongodb+srv://ralleyne:aKmZeKVumyqY6WQP@elevateeats.l3kch.mongodb.net/?retryWrites=true&w=majority&appName=ElevateEats";
+
+const client = new MongoClient(uri);
 
 app.use(express.static("public"))
 app.use(express.urlencoded({extended : true}))
@@ -17,6 +22,17 @@ app.get('/', (req, res) => {
 
 
 
-app.listen(port, () =>{
-    console.log(`Elevate Eats listening on port ${port}`)
-})
+try {
+    client.connect();
+    console.log(client.db("ElevateEats").command({ ping: 1 }));
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    app.listen(port, () =>{
+        console.log(`Elevate Eats listening on port ${port}`)
+    })
+} finally {
+    // Ensures that the client will close when you finish/error
+    client.close();
+}
+// app.listen(port, () =>{
+//     console.log(`Elevate Eats listening on port ${port}`)
+// })
