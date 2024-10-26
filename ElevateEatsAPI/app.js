@@ -6,7 +6,6 @@ const achievementsRouter = require('./routes/achievements')
 const {MongoClient} = require("mongodb");
 
 const uri = "mongodb+srv://ralleyne:aKmZeKVumyqY6WQP@elevateeats.l3kch.mongodb.net/?retryWrites=true&w=majority&appName=ElevateEats";
-
 const client = new MongoClient(uri);
 
 app.use(express.static("public"))
