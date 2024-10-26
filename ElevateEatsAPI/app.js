@@ -27,7 +27,7 @@ try {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
         app.listen(port, () =>{
             console.log(`Elevate Eats listening on port ${port}`)});
-            console.log(client.db().("show dbs"));
+            //console.log(client.db().("show dbs"));
     })
 } finally {
     // Ensures that the client will close when you finish/error
